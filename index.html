@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>book</title>
+    <meta charset="UTF-8"/>
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+</head>
+<style>
+    div{
+    }
+    div img{
+        height: 90vh;
+    }
+</style>
+<body>
+<!-- Slider main container -->
+<div class="swiper-container">
+    <!-- Additional required wrapper -->
+    <div class="swiper-wrapper">
+        <!-- Slides -->
+        <div class="swiper-slide">
+            <img  data-src="image/p1.svgz" class="swiper-lazy">
+            <div class="swiper-lazy-preloader"></div>
+        </div>
+    </div>
+    <!-- If we need pagination -->
+    <div class="swiper-pagination"></div>
+
+    <!-- If we need navigation buttons -->
+    <div class="swiper-button-prev"></div>
+    <div class="swiper-button-next"></div>
+
+    <!-- If we need scrollbar -->
+    <div class="swiper-scrollbar"></div>
+</div>
+</body>
+<script src="https://unpkg.com/swiper/swiper-bundle.js"></script>
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+
+    let createImgElement=()=>{
+      let i=1;
+      let str=``;
+      while (i<121){
+        str+=`<div class="swiper-slide">
+            <img  data-src="image/p${i}.svgz" class="swiper-lazy">
+            <div class="swiper-lazy-preloader"></div>
+        </div>`;
+        i++;
+      }
+      return str;
+    };
+    let str=createImgElement();
+    console.log(str);
+    document.querySelector('.swiper-wrapper').innerHTML=str;
+  var swiper = new Swiper('.swiper-container', {
+    //start avatar
+    initialSlide :1,
+    speed:1000,
+    // Disable preloading of all images
+    preloadImages: false,
+    lazy: true,
+    loop : true,
+    grabCursor : true,
+    slidesPerView: "3",
+    spaceBetween: 30,
+    autoplay : {
+      // delay time
+      delay:3000
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    }
+  });
+
+
+  swiper.el.onmouseover = function(){
+    swiper.autoplay.stop();
+  };
+  swiper.el.onmouseleave = function() {
+    swiper.autoplay.start();
+  };
+</script>
+</html>
